@@ -23,6 +23,7 @@ struct ContentView: View {
                             await personImage.getImage(forPage: page)
                         }
                     }
+                    .disabled(page <= 1 || personImage.image.pages == 1)
                     Text("\(page)/\(personImage.image.pages)")
                     Button("Next") {
                         guard page < personImage.image.pages else { return }
@@ -31,12 +32,11 @@ struct ContentView: View {
                             await personImage.getImage(forPage: page)
                         }
                     }
+                    
                 }
                 .buttonStyle(.glassProminent)
                 .buttonSizing(.flexible)
-                .padding(.bottom)
-                .padding(.leading)
-                .padding(.trailing)
+                .padding([.bottom, .leading, .trailing])
                 //.frame(maxWidth: .infinity, alignment: .leading) // <--- Выровнять по левому краю
             }
             Tab("Episodes", systemImage: "display") {
